@@ -2,12 +2,25 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import datetime
 from test import test
+import requests
 
 x = datetime.datetime.now()
 
 # Initializing flask app
 app = Flask(__name__)
 CORS(app)
+
+
+@app.route('/yelp', methods=['GET'])
+def yelp_api():
+    location = request.args.get('location')
+    url = f"https://api.yelp.com/v3/businesses/search?location={location}&sort_by=best_match&limit=20"
+    headers = {
+        "accept": "application/json",
+        "Authorization": "Bearer -qzIgLWa-gy3cnbiXjFLDRG86NebZoUmchyEA_SjVeS4AUqOS6R3YOCU1U5BCbrPaT3CWTEcmvycEA5nyHr9472XweTn4JzPlxRgC2vDfMbKglfntXcJrKsoi01EZHYx"
+    }
+    response = requests.get(url, headers=headers)
+    return jsonify(response.json())
 
 
 # Route for seeing a data
