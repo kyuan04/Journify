@@ -1,6 +1,5 @@
 import logo from "./logo.svg";
-import "./App.css";
-import { useState } from "react";
+import "./App.scss";
 import APIService from "./component/APIService";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
