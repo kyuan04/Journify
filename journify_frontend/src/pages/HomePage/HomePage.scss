@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=lora');
+
+.background-image-container {
+    position: relative;
+    width: 100%;
+    height: 710px;
+    min-height: 600px;
+    max-height: 800px;
+    background-image: url("../../images/maldives-background-photo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+    .search-bar-container {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 100px;
+    border-radius: 10px;
+    }
+
+    .search-bar {
+        width: auto;
+        font-size: 18px;
+        padding: 10px 8px;
+        border: none;
+        border-right: rgb(150, 146, 146) solid;
+        outline: none;
+        background-color: transparent;
+        color: #333;
+        min-width: 700px;
+    }
+
+    .search-button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        pointer-events: auto;
+        font-size: 18px;
+        color: rgb(124, 117, 117);
+        margin-left: 10px;
+
+    }
+  
+    .main-heading {
+        font-family: 'lora', italics;
+        position: absolute;
+        top: 28%;
+        left: 24%;
+        transform: translate(-50%, -50%);
+        color: #ffffff;
+        font-size: 48px;
+        width: 30%;
+    }
+
+    .info-container {
+        display: flex;
+        align-items: center;
+        &.one {
+            min-height: 350px;
+            // height: 300px;
+            background-color: #CEE5D0;
+        }
+
+        &.two {
+            min-height: 300px;
+            // height: 300px;
+            background-color: #F3F0D7;
+        }
+
+        &.three {
+            min-height: 350px;
+            background-color: #FED2AA;
+        }
+    }
+
+    .destination-photo {
+        position: relative;
+
+        &.one {
+            width: 400px;
+            height: auto;
+            // top: 15%;
+            padding-left: 8%;
+        }
+
+        &.two {
+            width: auto;
+            height: 400px;
+            padding-top: 2%;
+            padding-bottom: 2%;
+            padding-left: 10%;
+        }
+
+        &.three {
+            width: 500px;
+            height: auto;
+            padding-top: 2%;
+            padding-bottom: 2%;
+            padding-left: 8%;
+        }
+    }
+
+    .description-text {
+        font-family: 'Sora';
+        position: relative;
+        font-size: 24px;
+        
+        &.one {
+            width: 45%;
+            // margin-top: 6rem;
+            margin-left: 12%;
+        }
+
+        &.two {
+            width: 45%;
+            // margin-top: 6rem;
+            margin-left: 10%;
+            margin-right: 16px;
+            font-size: 24px;
+        }
+
+        &.three {
+            width: 40%;
+            // margin-top: 6rem;
+            margin-left: 10%;
+        }
+    }
