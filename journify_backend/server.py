@@ -11,19 +11,20 @@ x = datetime.datetime.now()
 app = Flask(__name__)
 CORS(app)
 
-@app.route("http://localhost:3000/api/v1/generate_text_test", methods=["POST"])
+
+@app.route("/generate_text_test", methods=["POST"])
 def generate_text_test():
     data = request.json
-    console.log(data)
-    generated_text = generate_text(data)  # assuming generate_text takes a string as input
+    print(data)
+    # assuming generate_text takes a string as input
+    generated_text = generate_text(data)
     response = {
-    "data": {
-        "generated_text": generated_text
+        "data": {
+            "generated_text": generated_text
+        }
     }
-}
 
     return jsonify(response)
-
 
 
 # Route for seeing a data
