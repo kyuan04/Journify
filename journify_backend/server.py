@@ -11,9 +11,9 @@ CORS(app)
 
 
 # Route for seeing a data
-@app.route('/data')
+@app.route('/data', methods=["GET"])
 def get_time():
-
+    print("penis")
     # Returning an api for showing in  reactjs
     return {
         'Name': "geek",
@@ -28,12 +28,11 @@ def get_time():
 # run server.py first then npm.start in frontend terminal
 @app.route("/add", methods=["POST"], strict_slashes=False)
 def add_articles():
-    #title = request.json['title']
-    # body = request.json['body']
+    title = request.json['title']
+    body = request.json['body']
     print("HERE")
-    test(request.json)
 
-    return "lol"
+    return jsonify({"title": "penis", "body": "asshol"})
 
 
 # Running app

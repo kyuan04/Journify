@@ -15,6 +15,7 @@ function App() {
   //title and body are temp, can be collected from form using useSTate
   //use APIService component to call backend
   APIService.InsertArticle({ title, body });
+  APIService.GetTime();
 
   return (
     
