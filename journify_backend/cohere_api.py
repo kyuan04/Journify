@@ -1,8 +1,16 @@
 import cohere
-co = cohere.Client('QUibWepznFXzOaIdtUEZC7MyBKhFH23bC4Ho9ZHw')
 
-response = co.generate(
-  prompt='My name Jack and I want to visit somewhere that has hiking, beaches, and good food. Recommend me a place to visit as well as an itinerary',
-)
-# print(response[0].text)
-print(response)
+def generate_text(prompt):
+    co = cohere.Client('QUibWepznFXzOaIdtUEZC7MyBKhFH23bC4Ho9ZHw') # This is your trial API key
+    response = co.generate(
+      model='command-xlarge-nightly',
+      prompt=prompt,
+      max_tokens=600,
+      temperature=0.9,
+      k=0,
+      stop_sequences=[],
+      return_likelihoods='NONE')
+    return response.generations[0].text
+
+text = generate_text("Give me an idea for traveling. I enjoy hiking, beaches, and great food. I also like sunny places and am looking to visit during the summer time. Could you give me a detailed itinerary for a specific city or location?")
+print(text)
