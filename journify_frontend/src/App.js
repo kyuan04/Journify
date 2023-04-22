@@ -1,9 +1,16 @@
-import logo from "./logo.svg";
-import "./App.scss";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from "./pages/HomePage/HomePage";
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
-  return <HomePage></HomePage>;
+  return (
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<HomePage/>} />
+      </Routes>
+  </Router>
+  );
 }
 
 export default App;
