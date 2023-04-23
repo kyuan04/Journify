@@ -9,14 +9,16 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import "./DestinationCards.scss";
-import IconButton from "@material-ui/core/IconButton";
+import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import axios from 'axios';
 
 function DestinationCard(props) {
   const [destinations, setDestinations] = useState([]);
+  const navigate = useNavigate();
 
   var destinations_array = props.destinationSearchResults.response;
   // setDestinations(props.destinationSearchResults.response);
@@ -35,15 +37,26 @@ function DestinationCard(props) {
     console.log(newListItem, "has been added to the list");
   };
 
+  const handleClick = async (event, destination) => {
+    event.preventDefault();
+    const response = await axios.get(`http://127.0.0.1:5000/yelp?location=${destination}`);
+    const attractionResults = response.data;
+    navigate('/destination-info', {state: { attractionResults }, dest: { destination }});
+    // fetch(`http://127.0.0.1:5000/yelp?location=${destination}`)
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data))
+    //   .catch((error) => console.error(error));
+  };
+
   return (
-    <>
-      <div className="destination-card-section">
-        <div className="destination-cards-container">
-          {destinations_array.map((destinations, index) => (
-            <Card key={destinations} sx={{ maxWidth: 400 }}>
+    <div className="destination-card-section">
+      <div className="destination-cards-container">
+        {destinations_array.map((destination, index) => (
+          <a key={index} href="#" onClick={(e) => handleClick(e, destination)}>
+            <Card sx={{ maxWidth: 400 }}>
               <CardContent>
                 <Typography variant="h6" component="div">
-                  {destinations}
+                  {destination}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -55,10 +68,11 @@ function DestinationCard(props) {
                 </IconButton>
               </CardActions>
             </Card>
+            </a>
           ))}
         </div>
       </div>
-    </>
+    
   );
 }
 
