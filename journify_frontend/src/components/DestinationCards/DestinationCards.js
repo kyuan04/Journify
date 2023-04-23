@@ -17,22 +17,47 @@ function DestinationCard(props) {
   console.log(destinations_array);
   // console.log("In destinatinoCards: ", props.destinationSearchResults);
 
+  const handleClick = (event, destination) => {
+    event.preventDefault();
+    fetch(`http://127.0.0.1:5000/yelp?location=${destination}`)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  };
+
   return (
-    <a href="#">
-      <div className="destination-card-section">
-        <div className="destination-cards-container">
-          {destinations_array.map((destinations, index) => (
-            <Card key={destinations} sx={{ maxWidth: 400 }}>
+    <div className="destination-card-section">
+      <div className="destination-cards-container">
+        {destinations_array.map((destination, index) => (
+          <a key={index} href="#" onClick={(e) => handleClick(e, destination)}>
+            <Card sx={{ maxWidth: 400 }}>
               <CardContent>
                 <Typography variant="h6" component="div">
-                  {destinations}
+                  {destination}
                 </Typography>
               </CardContent>
             </Card>
-          ))}
-        </div>
+          </a>
+        ))}
       </div>
-    </a>
+    </div>
+    // <a
+    //   href={`https://www.yelp.com/search?find_desc=${props.destinationSearchResults.location}&find_loc=${props.destinationSearchResults.location}&sortby=bestmatch`}
+    // >
+    //   <div className="destination-card-section">
+    //     <div className="destination-cards-container">
+    //       {destinations_array.map((destinations, index) => (
+    //         <Card key={destinations} sx={{ maxWidth: 400 }}>
+    //           <CardContent>
+    //             <Typography variant="h6" component="div">
+    //               {destinations}
+    //             </Typography>
+    //           </CardContent>
+    //         </Card>
+    //       ))}
+    //     </div>
+    //   </div>
+    // </a>
   );
 }
 
