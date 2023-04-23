@@ -66,7 +66,6 @@ function SearchBar({ onSearch }) {
 
       console.log(searchResults);
       navigate("/destinations-results", { state: { searchResults } });
-      // history.push('/destinations-result', { data: searchResults });
     } catch (error) {
       // Handle any errors here
       console.error(error);

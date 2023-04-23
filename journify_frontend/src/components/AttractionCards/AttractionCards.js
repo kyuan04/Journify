@@ -12,6 +12,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 import "./AttractionCards.scss";
+
 function AttractionCard(props) {
   const [listItems, setListItems] = useState([]);
 
@@ -28,6 +29,8 @@ function AttractionCard(props) {
   const attractions_array = props.attractionResults.attractionResults
     ?.businesses ?? [{ name: "blank" }];
 
+    console.log(attractions_array);
+
   return (
     <div className="attraction-card-section">
       <div className="attraction-cards-container">
@@ -36,7 +39,8 @@ function AttractionCard(props) {
           <CardMedia component="img" height="220" image={attraction.image_url} />
           <CardContent>
             <Typography variant="h6" component="div" className="attraction-cards-heading">
-              {attraction.name}
+              <a className="attraction-card-heading-link" target="_blank" rel="noreferrer" href={attraction.url}>{attraction.name}</a>
+              {/* {attraction.name} */}
             </Typography>
           </CardContent>
           <CardActions>
