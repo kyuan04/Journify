@@ -12,23 +12,22 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 import "./AttractionCards.scss";
-
 function AttractionCard(props) {
   const [listItems, setListItems] = useState([]);
 
   const handleAddToList = (product) => {
     const newListItem = {
-      //   id: product.id,
-      name: product,
-      //   price: product.price,
+      id: product.id, // make sure product has an id property
+      name: product.name,
+      price: product.price, // make sure product has a price property
     };
     setListItems([...listItems, newListItem]);
     console.log(newListItem, "has been added to the list");
   };
 
-  const [attractions, setAttractions] = useState([]);
-  var attractions_array = props.attractionResults.attractionResults.businesses;
-  console.log(attractions_array);
+  const attractions_array = props.attractionResults.attractionResults
+    ?.businesses ?? [{ name: "blank" }];
+
   return (
     <div className="my-card-grid">
       {attractions_array.map((attraction) => (
