@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HomePageNavbar from "./HomePageNavbar";
 import "./HomePage.scss";
+import axios from 'axios';
 import background_photo from "../../images/maldives-background-photo.jpg";
 import madrid_destination_photo from '../../images/madrid-destination-photo.jpeg';
 import hiking_outdoors from "../../images/hiking-outdoors.jpeg";
