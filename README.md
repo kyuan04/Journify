@@ -1,2 +1,2 @@
 # Journify
-Vacation Planner project for LA Hacks
+AI-Powered Vacation Planner for LA Hacks
