@@ -39,19 +39,19 @@ def find_location():
     # Returning an api for showing in reactjs
     return {"response": places_array}
 
+@app.route('/itinerary', methods=["POST"])
+def create_itinerary():
+    data = request.get_json()
+    activities = data['activities'] # assuming the JSON payload has a 'location' field
+    location = data['location']
+    days = data['days']
+    text = cohere_api.generate_text(f"Write me a detailed itinerary with time stamps and a long description for each activity if I want to spend exactly {days} in {location} doing {activities}")
+    print("HELLO")
+    # Returning an api for showing in reactjs
+    return {"response": text}
 
 
 
-# app.route gets called from API Service in frontend component
-# test is an outside function inside journify'd backend folder, can be anything
-# run server.py first then npm.start in frontend terminal
-@app.route("/add", methods=["POST"], strict_slashes=False)
-def add_articles():
-    title = request.json['title']
-    body = request.json['body']
-    print("HERE")
-
-    return jsonify({"title": "penis", "body": "asshol"})
 
 
 # Running app

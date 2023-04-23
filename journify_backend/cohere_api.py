@@ -5,8 +5,8 @@ def generate_text(prompt):
     response = co.generate(
       model='command-xlarge-nightly',
       prompt=prompt,
-      max_tokens=600,
-      temperature=0.9,
+      max_tokens=1100,
+      temperature=0.3,
       k=0,
       stop_sequences=[],
       return_likelihoods='NONE')
