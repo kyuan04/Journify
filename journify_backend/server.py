@@ -58,9 +58,6 @@ def find_location():
 
     for index, location in enumerate(new_places_array):
         locations_object.append({"location": location, "image": location_photo_links_array[index]})
-    
-    print(locations_object)
-
 
     # Returning an api for showing in reactjs
     # return {"response": places_array}
@@ -70,7 +67,7 @@ def get_photos_from_google_places_api(location):
     if(location.find(" ") != -1):
         location = location.replace(" ", "%20")
 
-    print(location)
+    # print(location)
     location = location + "%20city"
     print(location)
     google_api_key = os.getenv("GOOGLE_MAPS_API_KEY")
@@ -105,16 +102,14 @@ def get_photos_from_google_places_api(location):
 @app.route('/itinerary', methods=["POST"])
 def create_itinerary():
     data = request.get_json()
+    print(data)
     activities = data['activities'] # assuming the JSON payload has a 'location' field
     location = data['location']
     days = data['days']
-    text = cohere_api.generate_text(f"Write me a detailed itinerary with time stamps and a long description for each activity if I want to spend exactly {days} in {location} doing {activities}")
-    print("HELLO")
+    text = cohere_api.generate_text(f"Write me a detailed itinerary with time stamps and a long description for each activity if I want to spend exactly {days} in {location} doing {activities}. Give this to me in a paragraph format.")
     # Returning an api for showing in reactjs
+    # print(text)
     return {"response": text}
-
-    # return place_photo_request_url
-    # print(url)
 
 # Running app
 if __name__ == '__main__':
