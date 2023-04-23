@@ -14,6 +14,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { blue } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import TextField from "@mui/material/TextField";
 
 const modalStyle = {
     position: 'absolute',
@@ -80,8 +81,9 @@ function ApiCallButton({ listItems }) {
                 days: numDays
             });
             
-            const returnedResponse = response.data;
-            setResponseText(returnedResponse.response);
+            let returnedResponse = response.data;
+            returnedResponse = returnedResponse.response.trim();
+            setResponseText(returnedResponse);
             console.log(responseText);
         } catch (error) {
             console.log(error)
@@ -137,9 +139,26 @@ function ApiCallButton({ listItems }) {
                     <Typography variant="h5" component="div" className="result-modal-heading">
                         Trip Itinerary
                     </Typography>
-                    <Typography variant="body1" component="div">
-                        {responseText}
-                    </Typography>
+                    <TextField
+                        label="Result Text"
+                        value={responseText}
+                        multiline
+                        rows={10}
+                        fullWidth
+                        variant="outlined"
+                        disabled
+                        InputProps={{
+                            style: {
+                                color: '#333',
+                                fontSize: 16.
+                            }
+                        }}
+                        InputLabelProps={{
+                            style: {
+                                color: '#333',
+                            },
+                        }}
+                    />
                 </Box>
             </Paper>
         </Modal>
