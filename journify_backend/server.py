@@ -3,6 +3,7 @@ from flask_cors import CORS
 import datetime
 from test import test
 from cohere_api import generate_text
+import requests
 
 
 x = datetime.datetime.now()
