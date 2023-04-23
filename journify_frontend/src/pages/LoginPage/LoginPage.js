@@ -1,8 +1,10 @@
 import { app } from "../../index.js"
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import SignIn from "../../components/SignIn/SignIn";
+import Navbar from "../../components/Navbar/Navbar.js";
 
-export default function Login() {
+function LoginPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
@@ -47,29 +49,11 @@ export default function Login() {
       }
 
   return (
-    <div className="flex flex-col">
-        <h1>Login</h1>
-        <div>
-            <form onSubmit={handleSubmit(userLogin)}>
-                <label>
-                    <div>Email</div>
-                    <input {...register("email", { required: true })}/>
-                    {errors.email && "Email is required"}
-                </label>
-                <label>
-                    <div>Username</div>
-                    <input {...register("username", { required: true })} />
-                    {errors.username && "Username is required"}
-                </label>
-                <label>
-                    <div>Password</div>
-                    <input {...register("password", { required: true })} />
-                    {errors.password && "Password is required"}
-                </label>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-        <button onClick={googleLogin}>Continue with Google</button>
-    </div>
-  );
+    <>
+      <Navbar/>
+      <SignIn/>
+    </>
+  )
 }
+
+export default LoginPage;

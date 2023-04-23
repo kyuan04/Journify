@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import SignUp from "./pages/SignUp/SignUp.js";
-import Login from "./pages/Login/Login.js";
+import LoginPage from "./pages/LoginPage/LoginPage.js";
 import DestinationPage from "./pages/DestinationsPage/DestinationPage";
 import DestinationInfo from "./pages/DestinationInfo/DestinationInfo";
 import Itinerary from "./pages/Itinerary/Itinerary";
@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/explore" element={<DestinationPage />} />
         <Route exact path="/signup" element={<SignUp />} />
-        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/login" element={<LoginPage />} />
         <Route
           exact path="/destinations-results" element={<DestinationPage />} />
         <Route exact path="/destination-info" element={<DestinationInfo />} />

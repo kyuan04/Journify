@@ -1,6 +1,8 @@
 import { app } from "../../index.js"
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import SignUpComponent from "../../components/SignUpComponent/SignUpComponent.js";
+import Navbar from "../../components/Navbar/Navbar.js";
 
 export default function SignUp() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -46,29 +48,9 @@ export default function SignUp() {
     }
 
     return (
-        <div className="flex flex-col">
-            <h1>Sign Up</h1>
-            <div>
-                <form onSubmit={handleSubmit(signUp)}>
-                    <label>
-                        <div>Email</div>
-                        <input {...register("email", { required: true })}/>
-                        {errors.email && "Email is required"}
-                    </label>
-                    <label>
-                        <div>Username</div>
-                        <input {...register("username", { required: true })} />
-                        {errors.username && "Username is required"}
-                    </label>
-                    <label>
-                        <div>Password</div>
-                        <input {...register("password", { required: true })} />
-                        {errors.password && "Password is required"}
-                    </label>
-                    <button type="submit">Sign Up</button>
-                </form>
-            </div>
-            <button onClick={googleLogin}>Sign Up with Google</button>
-        </div>
+        <>
+            <Navbar/>
+            <SignUpComponent/>
+        </>
     );
 }

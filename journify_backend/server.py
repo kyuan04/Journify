@@ -106,9 +106,9 @@ def create_itinerary():
     activities = data['activities'] # assuming the JSON payload has a 'location' field
     location = data['location']
     days = data['days']
-    text = cohere_api.generate_text(f"Write me a detailed itinerary with time stamps and a long description for each activity if I want to spend exactly {days} in {location} doing {activities}. Give this to me in a paragraph format.")
+    text = cohere_api.generate_text(f"Write me a detailed itinerary with time stamps and a long description for each activity if I want to spend exactly {days} days in {location} doing {activities}. I want this itinerary to be divided up into respective days and to be as detailed as possible")
     # Returning an api for showing in reactjs
-    # print(text)
+    print(text)
     return {"response": text}
 
 # Running app
