@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./DestinationPage.scss";
-// import RecipeCard from "../RecipeCard/RecipeCard";
 // import SearchBar from "../SearchBar/SearchBar";
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import { blue } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Navbar from "../../components/Navbar/Navbar";
+import DestinationCards from "../../components/DestinationCards/DestinationCards";
 
 
 function DestinationPage() {
+    // const searchData = props.location.state.data;
+    const location = useLocation();
+    const { searchResults } = location.state;
+    console.log("search results: ", searchResults);
+
     const [recipes, setRecipes] = useState([]);
     const [nextPaginationLink, setNextPaginationLink] = useState('');
     const [recipesCount, setRecipesCount] = useState();
     const [loading, setLoading] = React.useState(false);
     const timer = React.useRef();
-
-    // const [prevPaginationLink, setPrevPaginationLink] = useState('');
-    
-    // var nextPaginationLink = '';
 
     const buttonSx = {
       ...{
@@ -93,6 +95,7 @@ function DestinationPage() {
               <h2 className="destination-page-heading">Destinations</h2>
               {/* <SearchBar onSearch={handleSearch}/> */}
               {/* <RecipeCard recipes={recipes} recipesCount={recipesCount}/> */}
+              <DestinationCards destinationSearchResults={searchResults} />
               <Box sx={{ m: 1, position: 'relative'}}>
                 {/* <div
                   className="see-more-button">
@@ -120,7 +123,7 @@ function DestinationPage() {
                 </div> */}
               </Box>
         </>
-    )
+    );
 }
 
 export default DestinationPage;

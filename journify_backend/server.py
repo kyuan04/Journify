@@ -2,8 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import datetime
 from test import test
-from cohere_api import generate_text
 import requests
+from cohere_api import cohere
+import cohere_api
 
 
 x = datetime.datetime.now()
@@ -12,20 +13,6 @@ x = datetime.datetime.now()
 app = Flask(__name__)
 CORS(app)
 
-
-@app.route("/generate_text_test", methods=["POST"])
-def generate_text_test():
-    data = request.json
-    print(data)
-    # assuming generate_text takes a string as input
-    generated_text = generate_text(data)
-    response = {
-        "data": {
-            "generated_text": generated_text
-        }
-    }
-
-    return jsonify(response)
 
 @app.route('/yelp', methods=['GET'])
 def yelp_api():
@@ -45,8 +32,10 @@ def find_location():
     data = request.get_json()
     location = data['location'] # assuming the JSON payload has a 'location' field
     print(location)
-    text = cohere_api.generate_text(f"Give me a list of 10 vacation locations in the format 'city, country' based on these parameters: {location}")
+    text = cohere_api.generate_text(f"Give me a list of 10 vacation locations based on these parameters: {location}")
     places_array = text.split('\n')
+    places_array = list(filter(None, places_array))
+
     # Returning an api for showing in reactjs
     return {"response": places_array}
 
