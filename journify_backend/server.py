@@ -42,6 +42,8 @@ def find_location():
     print(location)
     text = cohere_api.generate_text(f"Give me a list of 10 vacation locations based on these parameters: {location}")
     places_array = text.split('\n')
+    places_array = list(filter(None, places_array))
+
     # Returning an api for showing in reactjs
     return {"response": places_array}
 

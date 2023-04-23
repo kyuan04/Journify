@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HomePageNavbar from "./HomePageNavbar";
 import "./HomePage.scss";
 import axios from "axios";
@@ -9,6 +10,8 @@ import beach_couple from "../../images/beach-couple.jpeg";
 
 function SearchBar({ onSearch }) {
   const [searchValue, setSearchValue] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
@@ -17,27 +20,34 @@ function SearchBar({ onSearch }) {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       onSearch(searchValue);
-      alert(searchValue);
+      // alert(searchValue);
       setSearchValue("");
     }
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     onSearch(searchValue);
-    alert(searchValue);
+    // alert(searchValue);
     setSearchValue("");
-    const searchQuery = document.querySelector("#searchInput")?.value;
+    // const searchQuery = document.querySelector("#searchInput")?.value;
 
-    axios
-      .post("http://127.0.0.1:5000/data", { location: searchValue })
-      .then((response) => {
-        // Handle the response data here
-        console.log(response.data);
-      })
-      .catch((error) => {
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/data", { location: searchValue });
+      const searchResults = response.data;
+      setSearchResult(searchResults);
+
+      console.log(searchResults);
+      navigate('/destinations-results', { state: { searchResults }});
+      // history.push('/destinations-result', { data: searchResults });
+    } catch(error) {
         // Handle any errors here
         console.error(error);
-      });
+    }
+
+      // .then((response) => {
+      //   // Handle the response data here
+      //   console.log(response.data);
+      // })
   };
 
   return (
@@ -67,16 +77,16 @@ function HomePage() {
 
     const searchQuery = document.querySelector("#searchInput")?.value;
 
-    axios
-      .post("http://127.0.0.1:5000/data", { location: searchQuery })
-      .then((response) => {
-        // Handle the response data here
-        console.log(response.data);
-      })
-      .catch((error) => {
-        // Handle any errors here
-        console.error(error);
-      });
+    // axios
+    //   .post("http://127.0.0.1:5000/data", { location: searchQuery })
+    //   .then((response) => {
+    //     // Handle the response data here
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     // Handle any errors here
+    //     console.error(error);
+    //   });
   };
 
   const handleSearch = (term) => {
