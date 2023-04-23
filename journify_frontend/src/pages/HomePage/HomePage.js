@@ -32,22 +32,25 @@ function SearchBar({ onSearch }) {
     // const searchQuery = document.querySelector("#searchInput")?.value;
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/data", { location: searchValue });
+      const response = await axios.post("http://127.0.0.1:5000/data", {
+        location: searchValue,
+      });
+
       const searchResults = response.data;
       setSearchResult(searchResults);
 
       console.log(searchResults);
-      navigate('/destinations-results', { state: { searchResults }});
+      navigate("/destinations-results", { state: { searchResults } });
       // history.push('/destinations-result', { data: searchResults });
-    } catch(error) {
-        // Handle any errors here
-        console.error(error);
+    } catch (error) {
+      // Handle any errors here
+      console.error(error);
     }
 
-      // .then((response) => {
-      //   // Handle the response data here
-      //   console.log(response.data);
-      // })
+    // .then((response) => {
+    //   // Handle the response data here
+    //   console.log(response.data);
+    // })
   };
 
   return (
