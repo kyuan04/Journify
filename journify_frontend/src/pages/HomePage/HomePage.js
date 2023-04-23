@@ -13,7 +13,7 @@ function HomePage() {
     event.preventDefault();
 
     axios
-      .get("http://127.0.0.1:5000/yelp", { params: { location: searchQuery } })
+      .get("http://127.0.0.1:5000/data", { params: { location: searchQuery } })
       .then((response) => {
         // Handle the response data here
         console.log(response.data);

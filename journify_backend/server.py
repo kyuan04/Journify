@@ -3,6 +3,9 @@ from flask_cors import CORS
 import datetime
 from test import test
 import requests
+from cohere_api import cohere
+import cohere_api
+
 
 x = datetime.datetime.now()
 
@@ -26,13 +29,10 @@ def yelp_api():
 # Route for seeing a data
 @app.route('/data', methods=["GET"])
 def get_time():
-    print("penis")
+    text = cohere_api.generate_text("Based on the following parameters, recommend me 10 places for vacation in a list format with no description. I like: beaches, sunny, and nature")
     # Returning an api for showing in  reactjs
     return {
-        'Name': "geek",
-        "Age": "22",
-        "Date": x,
-        "programming": "python"
+        "Response" :  text
     }
 
 
