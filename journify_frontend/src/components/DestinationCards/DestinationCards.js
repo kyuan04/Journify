@@ -154,14 +154,26 @@ function DestinationCard(props) {
   return (
     <div className="destination-card-section">
       <div className="destination-cards-container">
-        {destinations_array.map((destination, index) => (
-          <a key={index} href="#" onClick={(e) => handleClick(e, destination)}>
-            <Card sx={{ maxWidth: 400 }}>
-              <CardContent>
-                <Typography variant="h6" component="div">
-                  {destination}
-                </Typography>
-              </CardContent>
+        {destinations_array.map((destinations) => (
+          <a
+            key={index}
+            href="#"
+            onClick={(e) => handleClick(e, destinations.location)}
+          >
+            <Card className="destination-cards" sx={{ maxWidth: 400 }}>
+              <CardMedia
+                component="img"
+                height="220"
+                image={destinations.image}
+                // alt={destinations.location}
+              />
+              <Typography
+                component="div"
+                className="destination-cards-heading"
+                variant="h6"
+              >
+                {destinations.location}
+              </Typography>
               <CardActions>
                 <IconButton
                   aria-label="add to favorites"

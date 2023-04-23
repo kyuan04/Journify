@@ -35,7 +35,6 @@ function SearchBar({ onSearch }) {
       const response = await axios.post("http://127.0.0.1:5000/data", {
         location: searchValue,
       });
-
       const searchResults = response.data;
       setSearchResult(searchResults);
 
@@ -46,11 +45,6 @@ function SearchBar({ onSearch }) {
       // Handle any errors here
       console.error(error);
     }
-
-    // .then((response) => {
-    //   // Handle the response data here
-    //   console.log(response.data);
-    // })
   };
 
   return (
