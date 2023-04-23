@@ -12,5 +12,3 @@ def generate_text(prompt):
       return_likelihoods='NONE')
     return response.generations[0].text
 
-text = generate_text("Give me an idea for traveling. I enjoy hiking, beaches, and great food. I also like sunny places and am looking to visit during the summer time. Could you give me a detailed itinerary for a specific city or location?")
-print(text)

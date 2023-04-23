@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import "./HomePage.scss";
 import background_photo from "../../images/maldives-background-photo.jpg";
@@ -49,6 +50,19 @@ function HomePage() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
+    const searchQuery = document.querySelector("#searchInput")?.value;
+
+    axios
+      .post("http://127.0.0.1:5000/data", { location: searchQuery })
+      .then((response) => {
+        // Handle the response data here
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error(error);
+      });
   };
 
   const handleSearch = (term) => {
@@ -102,26 +116,5 @@ function HomePage() {
     </>
   );
 }
-
-// return (
-//   <>
-//     <Navbar/>
-//     <div>
-//       <h1>Find your destination!</h1>
-//       <form onSubmit={handleFormSubmit}>
-//         <label htmlFor="searchInput">Enter preferences:</label>
-//         <input
-//           type="text"
-//           id="searchInput"
-//           value={searchQuery}
-//           onChange={handleInputChange}
-//         />
-//         <button type="submit">Enter</button>
-//       </form>
-//   </div>
-//   </>
-
-// );
-// }
 
 export default HomePage;

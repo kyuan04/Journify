@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import datetime
 from test import test
-from cohere_api import generate_text
+import requests
+from cohere_api import cohere
+import cohere_api
 
 
 x = datetime.datetime.now()
@@ -12,32 +14,39 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/generate_text_test", methods=["POST"])
-def generate_text_test():
-    data = request.json
-    print(data)
-    # assuming generate_text takes a string as input
-    generated_text = generate_text(data)
-    response = {
-        "data": {
-            "generated_text": generated_text
-        }
+@app.route('/yelp', methods=['GET'])
+def yelp_api():
+    location = request.args.get('location')
+    url = f"https://api.yelp.com/v3/businesses/search?location={location}&sort_by=best_match&limit=20"
+    headers = {
+        "accept": "application/json",
+        "Authorization": "Bearer -qzIgLWa-gy3cnbiXjFLDRG86NebZoUmchyEA_SjVeS4AUqOS6R3YOCU1U5BCbrPaT3CWTEcmvycEA5nyHr9472XweTn4JzPlxRgC2vDfMbKglfntXcJrKsoi01EZHYx"
     }
+    response = requests.get(url, headers=headers)
+    return jsonify(response.json())
 
-    return jsonify(response)
+
+# # Route for seeing a data
+# @app.route('/data', methods=["GET"])
+# def find_location():
+#     text = cohere_api.generate_text("Give me a list of vacation locations based on these parameters: ")
+#     places_array = text.split('\n')
+#     # Returning an api for showing in  reactjs
+#     return {
+#         "Response" :  places_array
+#     }
+
+@app.route('/data', methods=["POST"])
+def find_location():
+    data = request.get_json()
+    location = data['location'] # assuming the JSON payload has a 'location' field
+    print(location)
+    text = cohere_api.generate_text(f"Give me a list of 10 vacation locations based on these parameters: {location}")
+    places_array = text.split('\n')
+    # Returning an api for showing in reactjs
+    return {"response": places_array}
 
 
-# Route for seeing a data
-@app.route('/data', methods=["GET"])
-def get_time():
-    print("penis")
-    # Returning an api for showing in  reactjs
-    return {
-        'Name': "geek",
-        "Age": "22",
-        "Date": x,
-        "programming": "python"
-    }
 
 
 # app.route gets called from API Service in frontend component
