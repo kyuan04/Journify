@@ -1,16 +1,99 @@
-.my-card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-}
+// .my-card-grid {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   grid-gap: 20px;
+// }
 
-.my-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+// .my-card {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   height: 100%;
   
-  .card-content {
-    flex-grow: 1;
+//   .card-content {
+//     flex-grow: 1;
+//   }
+// }
+
+
+.attraction-card-section {
+  @media screen and (min-width: 1401px) {
+      .attraction-cards-container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          // grid-template-columns: auto auto auto;
+  
+          justify-items: center;
+          align-content: space-evenly;
+          align-items: center;
+          margin: 0 20px 0 20px;
+      }
+  }
+
+  @media screen and (min-width: 1025px) and (max-width: 1400px) {
+      .attraction-cards-container {
+          display: grid;
+          // grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: auto auto auto;
+  
+          justify-items: center;
+          align-content: space-evenly;
+          align-items: center;
+          margin: 0 20px 0 20px;
+      }
+  }
+
+  @media screen and (min-width: 1141px) and (max-width: 1024px) {
+      .attraction-cards-container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          // grid-template-columns: auto auto auto;
+  
+          justify-items: center;
+          align-content: space-evenly;
+          align-items: center;
+          margin: 0 20px 0 20px;
+      }
+  }
+
+  @media screen and (min-width: 690px) and (max-width: 1140px) {
+      .attraction-cards-container {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          // grid-template-columns: auto auto auto;
+  
+          justify-items: center;
+          align-content: space-evenly;
+          align-items: center;
+          margin: 0 20px 0 20px;
+      }
+  }
+
+  @media screen and (max-width: 689px) {
+      .attraction-cards-container {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          // grid-template-columns: auto auto auto;
+  
+          justify-items: center;
+          align-content: space-evenly;
+          align-items: center;
+          margin: 0 20px 0 20px;
+      }
+  }
+  
+  .attraction-cards {
+      display: block;
+      width: fit-content;
+      height: 425px;
+      width: 345px;
+      // min-height: 375px;
+      max-height: 425px;
+      margin-bottom: 40px;
+  }
+
+  .attraction-card-heading-link {
+      text-decoration: underline;
+      color: #111111;
   }
 }

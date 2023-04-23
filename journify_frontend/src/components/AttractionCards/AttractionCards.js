@@ -29,12 +29,13 @@ function AttractionCard(props) {
     ?.businesses ?? [{ name: "blank" }];
 
   return (
-    <div className="my-card-grid">
+    <div className="attraction-card-section">
+      <div className="attraction-cards-container">
       {attractions_array.map((attraction) => (
-        <Card key={attraction.name} sx={{ maxWidth: 400 }} className="my-card">
-          <CardMedia component="img" image={attraction.image_url} />
+        <Card key={attraction.name} sx={{ maxWidth: 400 }} className="attraction-cards">
+          <CardMedia component="img" height="220" image={attraction.image_url} />
           <CardContent>
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" className="attraction-cards-heading">
               {attraction.name}
             </Typography>
           </CardContent>
@@ -48,6 +49,7 @@ function AttractionCard(props) {
           </CardActions>
         </Card>
       ))}
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import AttractionCard from "../../components/AttractionCards/AttractionCards";
 import { useLocation } from "react-router-dom";
+import "./DestinationInfo.scss";
 
 function ApiCallButton({ listItems }) {
   const handleClick = () => {
@@ -46,8 +47,8 @@ function DestinationInfo() {
 
   return (
     <div>
-      <Navbar />
-      <h2>Attractions</h2>
+    <Navbar />
+    <h2 className="destination-info-page-heading">Attractions</h2>
       <ApiCallButton listItems={listItems} />
       <AttractionCard
         attractionResults={yelpResults}
