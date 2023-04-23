@@ -131,25 +131,4 @@ function HomePage() {
   );
 }
 
-// return (
-//   <>
-//     <Navbar/>
-//     <div>
-//       <h1>Find your destination!</h1>
-//       <form onSubmit={handleFormSubmit}>
-//         <label htmlFor="searchInput">Enter preferences:</label>
-//         <input
-//           type="text"
-//           id="searchInput"
-//           value={searchQuery}
-//           onChange={handleInputChange}
-//         />
-//         <button type="submit">Enter</button>
-//       </form>
-//   </div>
-//   </>
-
-// );
-// }
-
 export default HomePage;
