@@ -26,27 +26,14 @@ def yelp_api():
     return jsonify(response.json())
 
 
-# # Route for seeing a data
-# @app.route('/data', methods=["GET"])
-# def find_location():
-#     text = cohere_api.generate_text("Give me a list of vacation locations based on these parameters: ")
-#     places_array = text.split('\n')
-#     # Returning an api for showing in  reactjs
-#     return {
-#         "Response" :  places_array
-#     }
-
-@app.route('/data', methods=["POST"])
-def find_location():
-    data = request.get_json()
-    location = data['location'] # assuming the JSON payload has a 'location' field
-    print(location)
-    text = cohere_api.generate_text(f"Give me a list of 10 vacation locations based on these parameters: {location}")
-    places_array = text.split('\n')
-    # Returning an api for showing in reactjs
-    return {"response": places_array}
-
-
+# Route for seeing a data
+@app.route('/data', methods=["GET"])
+def get_time():
+    text = cohere_api.generate_text("Based on the following parameters, recommend me 10 places for vacation in a list format with no description. I like: beaches, sunny, and nature")
+    # Returning an api for showing in  reactjs
+    return {
+        "Response" :  text
+    }
 
 
 # app.route gets called from API Service in frontend component
