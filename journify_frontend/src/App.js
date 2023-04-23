@@ -11,7 +11,7 @@ import DestinationPage from "./pages/DestinationsPage/DestinationPage"
 function App() {
   const [title, setTitle] = useState("THIS IS TITLE");
   const [body, setBody] = useState("THIS IS BODY");
-
+  
   return (
     
       <Router>

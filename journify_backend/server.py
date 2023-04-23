@@ -40,7 +40,7 @@ def find_location():
     data = request.get_json()
     location = data['location'] # assuming the JSON payload has a 'location' field
     print(location)
-    text = cohere_api.generate_text(f"Give me a list of 10 vacation locations based on these parameters: {location}")
+    text = cohere_api.generate_text(f"Give me a list of 10 vacation locations in the format 'city, country' based on these parameters: {location}")
     places_array = text.split('\n')
     places_array = list(filter(None, places_array))
 
