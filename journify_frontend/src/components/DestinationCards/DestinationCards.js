@@ -14,14 +14,28 @@ function DestinationCard(props) {
 
     var destinations_array = props.destinationSearchResults.response;
     // setDestinations(props.destinationSearchResults.response);
-    console.log(destinations_array);
+    // console.log("I am here!!!\n")
+    // console.log(destinations_array);
     // console.log("In destinatinoCards: ", props.destinationSearchResults);
 
     return (
         <>
             <div className="destination-card-section">
                 <div className="destination-cards-container">
-                    {destinations_array.map((destinations, index) => (
+                    {destinations_array.map((destinations) => (
+                        <Card className="destination-cards" sx={{ maxWidth: 400 }}>
+                            <CardMedia 
+                                component="img"
+                                height="220"
+                                image={destinations.image}
+                                // alt={destinations.location}
+                            />
+                            <Typography component="div" className="destination-cards-heading" variant="h6">
+                                {destinations.location}
+                            </Typography> 
+                        </Card>
+                    ))}
+                    {/* {destinations_array.map((destinations, index) => (
                         <Card key={destinations} sx={{ maxWidth: 400 }}>
                             <CardContent>
                                 <Typography variant="h6" component="div">
@@ -29,7 +43,7 @@ function DestinationCard(props) {
                                 </Typography>
                             </CardContent>
                         </Card>
-                    ))}
+                    ))} */}
                   {/* {destinationsSearchData.map((destinations, index) => (
                     <Card className="destination-cards" sx={{ maxWidth: 400 }}>
                         <Typography component="div" className="destination-card-heading" variant="h6">
@@ -60,8 +74,8 @@ function DestinationCard(props) {
                         </CardActions>
                     </Card>
                 ))} */}
+            </div>
         </div>
-    </div>
     </>
     );
 }
