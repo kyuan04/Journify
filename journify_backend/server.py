@@ -17,15 +17,14 @@ CORS(app)
 @app.route('/yelp', methods=['GET'])
 def yelp_api():
     location = request.args.get('location')
-    url = f"https://api.yelp.com/v3/businesses/search?location={location}&sort_by=best_match&limit=20"
+    #url = f"https://api.yelp.com/v3/businesses/search?location={location}&sort_by=best_match&limit=5"
+    url = f"https://api.yelp.com/v3/businesses/search?location={location}&categories=museums,cafes,parks&sort_by=best_match&limit=16"
     headers = {
         "accept": "application/json",
         "Authorization": "Bearer -qzIgLWa-gy3cnbiXjFLDRG86NebZoUmchyEA_SjVeS4AUqOS6R3YOCU1U5BCbrPaT3CWTEcmvycEA5nyHr9472XweTn4JzPlxRgC2vDfMbKglfntXcJrKsoi01EZHYx"
     }
     response = requests.get(url, headers=headers)
     return jsonify(response.json())
-
-    
 
 @app.route('/data', methods=["POST"])
 def find_location():
