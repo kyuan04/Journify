@@ -7,28 +7,54 @@ import background_photo from "../../images/maldives-background-photo.jpg";
 import madrid_destination_photo from "../../images/madrid-destination-photo.jpeg";
 import hiking_outdoors from "../../images/hiking-outdoors.jpeg";
 import beach_couple from "../../images/beach-couple.jpeg";
+import CircularProgress from '@mui/material/CircularProgress';
+import { blue } from '@mui/material/colors';
+
+
 
 function SearchBar({ onSearch }) {
+
+  //"Give me some ideas of where to travel to for vacation in the format 'city, country' based on these parameters: {location}. Don't number the list."
   const [searchValue, setSearchValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
   };
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = async (event) => {
     if (event.key === "Enter") {
       onSearch(searchValue);
       // alert(searchValue);
-      setSearchValue("");
-    }
-  };
+      setSearchValue("Loading your travel destinations...");
+      setIsLoading(true);
+
+
+      try {
+        const response = await axios.post("http://127.0.0.1:5000/data", {
+          location: searchValue,
+        });
+        const searchResults = response.data;
+        setSearchResult(searchResults);
+  
+        console.log(searchResults);
+        navigate("/destinations-results", { state: { searchResults } });
+        // history.push('/destinations-result', { data: searchResults });
+      } catch (error) {
+        // Handle any errors here
+        console.error(error);
+      }
+      setIsLoading(false);
+    };
+  }
 
   const handleSearchClick = async () => {
     onSearch(searchValue);
     // alert(searchValue);
-    setSearchValue("");
+    setSearchValue("Loading your travel destinations...");
+    setIsLoading(true);
     // const searchQuery = document.querySelector("#searchInput")?.value;
 
     try {
@@ -45,6 +71,7 @@ function SearchBar({ onSearch }) {
       // Handle any errors here
       console.error(error);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -52,16 +79,31 @@ function SearchBar({ onSearch }) {
       <form></form>
       <input
         type="text"
-        placeholder="Search"
+        placeholder="What's your next destination? Search now"
         className="search-bar"
         id="searchValue"
         value={searchValue}
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
       />
-      <button className="search-button" onClick={handleSearchClick}>
-        Search
-      </button>
+        <button className="search-button" onClick={handleSearchClick}>
+          Search
+        </button>
+        {isLoading && (
+          <div className="loading-container">
+            <CircularProgress 
+              size={48}
+              sx={{
+                color: blue[200],
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                marginTop: '-12px',
+                marginLeft: '-12px',
+              }}
+            />
+          </div>
+        )}
     </div>
   );
 }
@@ -71,8 +113,6 @@ function HomePage() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    const searchQuery = document.querySelector("#searchInput")?.value;
 
     // axios
     //   .post("http://127.0.0.1:5000/data", { location: searchQuery })

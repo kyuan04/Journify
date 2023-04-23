@@ -141,7 +141,7 @@ function DestinationCard(props) {
     // // const response = await axios.get(`http://127.0.0.1:5000/yelp/parks?location=${destination}`);
 
     const attractionResults = response.data;
-    navigate("/destination-info", {
+    navigate(`/destination-info?${destination}`, {
       state: { attractionResults },
       dest: { destination },
     });
@@ -155,11 +155,11 @@ function DestinationCard(props) {
     <div className="destination-card-section">
       <div className="destination-cards-container">
         {destinations_array.map((destinations) => (
-          <a
-            key={index}
-            href="#"
-            onClick={(e) => handleClick(e, destinations.location)}
-          >
+        //   <a
+        //     key={index}
+        //     href="#"
+        //     onClick={(e) => handleClick(e, destinations.location)}
+        //   >
             <Card className="destination-cards" sx={{ maxWidth: 400 }}>
               <CardMedia
                 component="img"
@@ -172,7 +172,7 @@ function DestinationCard(props) {
                 className="destination-cards-heading"
                 variant="h6"
               >
-                {destinations.location}
+                <a className="destination-card-heading-link" href="#" onClick={(e) => handleClick(e, destinations.location)}>{destinations.location}</a>
               </Typography>
               <CardActions>
                 <IconButton
@@ -183,7 +183,7 @@ function DestinationCard(props) {
                 </IconButton>
               </CardActions>
             </Card>
-          </a>
+        //   </a>
         ))}
       </div>
     </div>

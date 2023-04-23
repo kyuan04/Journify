@@ -1,6 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import AttractionCards from "../../components/AttractionCards/AttractionCards";
 import { useLocation } from "react-router-dom";
+import "./DestinationInfo.scss";
 
 
 function DestinationInfo() {
@@ -11,7 +12,7 @@ function DestinationInfo() {
     return (
         <div>
             <Navbar />
-            <h2>Attractions</h2>
+            <h2 className="destination-info-page-heading">Attractions</h2>
             <AttractionCards attractionResults={yelpResults} />
         </div>
     );
