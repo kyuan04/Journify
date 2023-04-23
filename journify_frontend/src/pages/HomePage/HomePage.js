@@ -9,11 +9,27 @@ function HomePage() {
     setSearchQuery(event.target.value);
   };
 
+  // const handleFormSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   axios
+  //     .get("http://127.0.0.1:5000/data", { params: { location: searchQuery } })
+  //     .then((response) => {
+  //       // Handle the response data here
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       // Handle any errors here
+  //       console.error(error);
+  //     });
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
+    const searchQuery = document.querySelector("#searchInput")?.value;
+
     axios
-      .get("http://127.0.0.1:5000/data", { params: { location: searchQuery } })
+      .post("http://127.0.0.1:5000/data", { location: searchQuery })
       .then((response) => {
         // Handle the response data here
         console.log(response.data);
