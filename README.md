@@ -1,2 +1,2 @@
-# LaHacks2023
+# Journify
 Vacation Planner project for LA Hacks
