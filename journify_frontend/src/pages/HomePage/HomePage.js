@@ -26,14 +26,28 @@ function SearchBar({ onSearch }) {
     onSearch(searchValue);
     alert(searchValue);
     setSearchValue("");
+    const searchQuery = document.querySelector("#searchInput")?.value;
+
+    axios
+      .post("http://127.0.0.1:5000/data", { location: searchValue })
+      .then((response) => {
+        // Handle the response data here
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error(error);
+      });
   };
 
   return (
     <div className="search-bar-container">
+      <form></form>
       <input
         type="text"
         placeholder="Search"
         className="search-bar"
+        id="searchValue"
         value={searchValue}
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
