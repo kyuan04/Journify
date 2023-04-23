@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import "./HomePage.scss";
 import background_photo from "../../images/maldives-background-photo.jpg";
@@ -22,8 +23,16 @@ function SearchBar({ onSearch }) {
   };
 
   const handleSearchClick = () => {
-    onSearch(searchValue);
-    alert(searchValue);
+    axios
+      .get("http://127.0.0.1:5000/yelp", { params: { location: searchValue } })
+      .then((response) => {
+        // Handle the response data here
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error(error);
+      });
     setSearchValue("");
   };
 
@@ -56,7 +65,7 @@ function HomePage() {
   };
 
   return (
-    <>
+    <div>
       <div className="background-image-container">
         <Navbar />
         <h1 className="main-heading">Your journey starts here</h1>
@@ -99,29 +108,9 @@ function HomePage() {
           all so you can spend time focusing on what really matters
         </p>
       </div>
-    </>
+      <Navbar />
+    </div>
   );
 }
-
-// return (
-//   <>
-//     <Navbar/>
-//     <div>
-//       <h1>Find your destination!</h1>
-//       <form onSubmit={handleFormSubmit}>
-//         <label htmlFor="searchInput">Enter preferences:</label>
-//         <input
-//           type="text"
-//           id="searchInput"
-//           value={searchQuery}
-//           onChange={handleInputChange}
-//         />
-//         <button type="submit">Enter</button>
-//       </form>
-//   </div>
-//   </>
-
-// );
-// }
 
 export default HomePage;
