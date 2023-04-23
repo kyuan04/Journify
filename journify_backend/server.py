@@ -25,7 +25,6 @@ def yelp_api():
     response = requests.get(url, headers=headers)
     return jsonify(response.json())
 
-
 # # Route for seeing a data
 # @app.route('/data', methods=["GET"])
 # def find_location():

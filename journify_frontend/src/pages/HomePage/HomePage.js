@@ -23,8 +23,16 @@ function SearchBar({ onSearch }) {
   };
 
   const handleSearchClick = () => {
-    onSearch(searchValue);
-    alert(searchValue);
+    axios
+      .get("http://127.0.0.1:5000/yelp", { params: { location: searchValue } })
+      .then((response) => {
+        // Handle the response data here
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error(error);
+      });
     setSearchValue("");
     const searchQuery = document.querySelector("#searchInput")?.value;
 
@@ -84,7 +92,7 @@ function HomePage() {
   };
 
   return (
-    <>
+    <div>
       <div className="background-image-container">
         <Navbar />
         <h1 className="main-heading">Your journey starts here</h1>
@@ -127,7 +135,8 @@ function HomePage() {
           all so you can spend time focusing on what really matters
         </p>
       </div>
-    </>
+      <Navbar />
+    </div>
   );
 }
 
