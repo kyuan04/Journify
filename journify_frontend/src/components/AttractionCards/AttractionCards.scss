@@ -1,0 +1,16 @@
+.my-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.my-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  
+  .card-content {
+    flex-grow: 1;
+  }
+}
