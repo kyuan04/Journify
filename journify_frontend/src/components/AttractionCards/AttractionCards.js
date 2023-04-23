@@ -18,17 +18,19 @@ function AttractionCard(props) {
 
   const handleAddToList = (product) => {
     const newListItem = {
-      //   id: product.id,
-      name: product,
-      //   price: product.price,
+      id: product.id, // make sure product has an id property
+      name: product.name,
+      price: product.price, // make sure product has a price property
     };
     setListItems([...listItems, newListItem]);
     console.log(newListItem, "has been added to the list");
   };
 
-  const [attractions, setAttractions] = useState([]);
-  var attractions_array = props.attractionResults.attractionResults.businesses;
-  console.log(attractions_array);
+  const attractions_array = props.attractionResults.attractionResults
+    ?.businesses ?? [{ name: "blank" }];
+
+    console.log(attractions_array);
+
   return (
     <div className="attraction-card-section">
       <div className="attraction-cards-container">
@@ -37,7 +39,8 @@ function AttractionCard(props) {
           <CardMedia component="img" height="220" image={attraction.image_url} />
           <CardContent>
             <Typography variant="h6" component="div" className="attraction-cards-heading">
-              {attraction.name}
+              <a className="attraction-card-heading-link" target="_blank" rel="noreferrer" href={attraction.url}>{attraction.name}</a>
+              {/* {attraction.name} */}
             </Typography>
           </CardContent>
           <CardActions>

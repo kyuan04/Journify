@@ -52,7 +52,10 @@ const Itinerary = () => {
 
   return (
     <div>
-      <AttractionCard handleAddToList={setListItems} />
+      <AttractionCard
+        attractionResults={searchResult}
+        handleAddToList={setListItems}
+      />
       <button onClick={handleGenerateClick}>Generate Itinerary</button>
       <textarea value={itineraryText} onChange={() => {}} />
     </div>
