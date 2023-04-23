@@ -25,15 +25,7 @@ def yelp_api():
     response = requests.get(url, headers=headers)
     return jsonify(response.json())
 
-# # Route for seeing a data
-# @app.route('/data', methods=["GET"])
-# def find_location():
-#     text = cohere_api.generate_text("Give me a list of vacation locations based on these parameters: ")
-#     places_array = text.split('\n')
-#     # Returning an api for showing in  reactjs
-#     return {
-#         "Response" :  places_array
-#     }
+    
 
 @app.route('/data', methods=["POST"])
 def find_location():
